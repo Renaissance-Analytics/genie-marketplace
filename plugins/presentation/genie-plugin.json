@@ -1,0 +1,63 @@
+{
+  "id": "ai.genie.presentation",
+  "namespace": "presentation",
+  "name": "Presentation",
+  "version": "0.1.0",
+  "description": "Generate .pptx decks from a structured outline with dark-slide. Phase 2 adds a fancy-slides editor and Present mode.",
+  "publisher": {
+    "name": "Genie Official",
+    "keyId": "ed25519-bHc2Rt62EgjmpE5Fd7-QsJeNi36BsAwckJ4bEyx4BCE"
+  },
+  "engines": { "genie": ">=0.7.0" },
+  "entry": { "tools": "tools.cjs" },
+  "mcpTools": [
+    {
+      "name": "createDeck",
+      "description": "Generate a .pptx slide deck from a structured outline and write it into the workspace. Provide slides (each with a title and a markdown body or bullets); optional title, theme, and a workspace-relative output path.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string", "description": "Deck title (used for the default filename)." },
+          "theme": { "type": "string", "description": "Theme name (defaults to default)." },
+          "path": { "type": "string", "description": "Workspace-relative output path; defaults to <title>.pptx." },
+          "slides": {
+            "type": "array",
+            "description": "The slides, in order.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": { "type": "string" },
+                "body": { "type": "string", "description": "Markdown body." },
+                "bullets": { "type": "array", "items": { "type": "string" } },
+                "layout": { "type": "string" }
+              }
+            }
+          }
+        },
+        "required": ["slides"]
+      },
+      "run": "tools",
+      "process": "worker",
+      "gated": false
+    }
+  ],
+  "editors": [
+    {
+      "id": "deck",
+      "title": "Slides",
+      "extensions": [".pptx", ".odp"],
+      "fancyEditor": {
+        "package": "@particle-academy/fancy-slides",
+        "version": ">=0.1.0",
+        "export": "DeckEditor"
+      },
+      "toolbarActions": [
+        { "id": "present", "title": "Present", "icon": "play", "mode": "fullscreen" }
+      ]
+    }
+  ],
+  "capabilities": {
+    "fs": { "scope": "workspace", "extensions": [".pptx", ".odp"] },
+    "network": { "hosts": [] }
+  }
+}

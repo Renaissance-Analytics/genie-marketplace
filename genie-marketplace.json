@@ -1,0 +1,32 @@
+{
+  "id": "ai.genie.marketplace",
+  "name": "Genie Official Plugins",
+  "description": "The official, first-party Genie plugin marketplace — curated and maintained by Genie Official. Each member is installed individually and (once CI signs this repo) integrity-pinned and Ed25519-signed.",
+  "publisher": {
+    "name": "Genie Official",
+    "keyId": "ed25519-bHc2Rt62EgjmpE5Fd7-QsJeNi36BsAwckJ4bEyx4BCE"
+  },
+  "plugins": [
+    {
+      "id": "ai.genie.hello-world",
+      "name": "Hello World",
+      "version": "0.1.0",
+      "description": "A trivial dev plugin that registers a single greeting tool — proves the Genie plugin loader seam end-to-end.",
+      "path": "plugins/hello-world"
+    },
+    {
+      "id": "ai.genie.presentation",
+      "name": "Presentation",
+      "version": "0.1.0",
+      "description": "Generate .pptx decks from a structured outline with dark-slide. Ships a fancy-slides Slides editor + Present mode.",
+      "path": "plugins/presentation"
+    },
+    {
+      "id": "ai.genie.spreadsheet",
+      "name": "Spreadsheet",
+      "version": "0.1.0",
+      "description": "Generate .xlsx/.csv workbooks from structured data with holy-sheet. Ships a fancy-sheets Sheets editor.",
+      "path": "plugins/spreadsheet"
+    }
+  ]
+}
