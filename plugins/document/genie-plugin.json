@@ -19,7 +19,11 @@
     {
       "id": "document",
       "title": "Document",
-      "extensions": [".md", ".markdown", ".docx"],
+      "extensions": [
+        ".md",
+        ".markdown",
+        ".docx"
+      ],
       "fancyEditor": {
         "package": "@particle-academy/react-fancy",
         "version": ">=4.9.0",
@@ -28,7 +32,18 @@
     }
   ],
   "capabilities": {
-    "fs": { "scope": "workspace", "extensions": [".md", ".markdown", ".docx"] },
-    "network": { "hosts": [] }
-  }
+    "fs": {
+      "scope": "workspace",
+      "extensions": [
+        ".md",
+        ".markdown",
+        ".docx"
+      ]
+    },
+    "network": {
+      "hosts": []
+    }
+  },
+  "integrity": "sha256-2c24225233df8d9e3251061adf07e7f9a28117e0b8775d47eee13cd1aa84736b",
+  "signature": "7xJxhwSGF5xsT1fSf1baNo4sRAfNzU/cYcDzQlZruvu4UEWy6S0bSHWK07c4Zla4C+vwkddlCyMyMep3aFNKCw=="
 }
