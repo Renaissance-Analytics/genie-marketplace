@@ -8,8 +8,12 @@
     "name": "Genie Official",
     "keyId": "ed25519-bHc2Rt62EgjmpE5Fd7-QsJeNi36BsAwckJ4bEyx4BCE"
   },
-  "engines": { "genie": ">=0.7.0" },
-  "entry": { "tools": "tools.cjs" },
+  "engines": {
+    "genie": ">=0.7.0"
+  },
+  "entry": {
+    "tools": "tools.cjs"
+  },
   "mcpTools": [
     {
       "name": "createWorkbook",
@@ -17,24 +21,47 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "title": { "type": "string" },
-          "path": { "type": "string", "description": "Workspace-relative output path; defaults to <title>.xlsx." },
-          "sheetName": { "type": "string" },
-          "headers": { "type": "array", "items": { "type": "string" } },
+          "title": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string",
+            "description": "Workspace-relative output path; defaults to <title>.xlsx."
+          },
+          "sheetName": {
+            "type": "string"
+          },
+          "headers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "rows": {
             "type": "array",
             "description": "Flat rows (each an array of cell values) when not using sheets.",
-            "items": { "type": "array" }
+            "items": {
+              "type": "array"
+            }
           },
-          "csv": { "type": "string", "description": "CSV text; the first row is treated as headers." },
+          "csv": {
+            "type": "string",
+            "description": "CSV text; the first row is treated as headers."
+          },
           "sheets": {
             "type": "array",
             "items": {
               "type": "object",
               "properties": {
-                "name": { "type": "string" },
-                "columns": { "type": "array" },
-                "rows": { "type": "array" }
+                "name": {
+                  "type": "string"
+                },
+                "columns": {
+                  "type": "array"
+                },
+                "rows": {
+                  "type": "array"
+                }
               }
             }
           }
@@ -49,7 +76,11 @@
     {
       "id": "sheet",
       "title": "Sheets",
-      "extensions": [".xlsx", ".csv", ".ods"],
+      "extensions": [
+        ".xlsx",
+        ".csv",
+        ".ods"
+      ],
       "fancyEditor": {
         "package": "@particle-academy/fancy-sheets",
         "version": "0.9.0",
@@ -58,7 +89,18 @@
     }
   ],
   "capabilities": {
-    "fs": { "scope": "workspace", "extensions": [".xlsx", ".csv", ".ods"] },
-    "network": { "hosts": [] }
-  }
+    "fs": {
+      "scope": "workspace",
+      "extensions": [
+        ".xlsx",
+        ".csv",
+        ".ods"
+      ]
+    },
+    "network": {
+      "hosts": []
+    }
+  },
+  "integrity": "sha256-c96db95f2cafd193ca3a6e028228631b3bdf49541f3747036c2a77749c7f060c",
+  "signature": "XlzpRw0wQClSACBmx21bh4TFtSOaUg7V0SkdHvyabvE2IFoK1TvqTqVn7YRu0kJwnOSjWma3feNqlcdflwhCCA=="
 }
