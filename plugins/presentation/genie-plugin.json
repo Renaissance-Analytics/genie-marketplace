@@ -8,8 +8,12 @@
     "name": "Genie Official",
     "keyId": "ed25519-bHc2Rt62EgjmpE5Fd7-QsJeNi36BsAwckJ4bEyx4BCE"
   },
-  "engines": { "genie": ">=0.7.0" },
-  "entry": { "tools": "tools.cjs" },
+  "engines": {
+    "genie": ">=0.7.0"
+  },
+  "entry": {
+    "tools": "tools.cjs"
+  },
   "mcpTools": [
     {
       "name": "createDeck",
@@ -17,24 +21,47 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "title": { "type": "string", "description": "Deck title (used for the default filename)." },
-          "theme": { "type": "string", "description": "Theme name (defaults to default)." },
-          "path": { "type": "string", "description": "Workspace-relative output path; defaults to <title>.pptx." },
+          "title": {
+            "type": "string",
+            "description": "Deck title (used for the default filename)."
+          },
+          "theme": {
+            "type": "string",
+            "description": "Theme name (defaults to default)."
+          },
+          "path": {
+            "type": "string",
+            "description": "Workspace-relative output path; defaults to <title>.pptx."
+          },
           "slides": {
             "type": "array",
             "description": "The slides, in order.",
             "items": {
               "type": "object",
               "properties": {
-                "title": { "type": "string" },
-                "body": { "type": "string", "description": "Markdown body." },
-                "bullets": { "type": "array", "items": { "type": "string" } },
-                "layout": { "type": "string" }
+                "title": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "string",
+                  "description": "Markdown body."
+                },
+                "bullets": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "layout": {
+                  "type": "string"
+                }
               }
             }
           }
         },
-        "required": ["slides"]
+        "required": [
+          "slides"
+        ]
       },
       "run": "tools",
       "process": "worker",
@@ -45,19 +72,37 @@
     {
       "id": "deck",
       "title": "Slides",
-      "extensions": [".pptx", ".odp"],
+      "extensions": [
+        ".pptx",
+        ".odp"
+      ],
       "fancyEditor": {
         "package": "@particle-academy/fancy-slides",
         "version": "0.15.2",
         "export": "DeckEditor"
       },
       "toolbarActions": [
-        { "id": "present", "title": "Present", "icon": "play", "mode": "fullscreen" }
+        {
+          "id": "present",
+          "title": "Present",
+          "icon": "play",
+          "mode": "fullscreen"
+        }
       ]
     }
   ],
   "capabilities": {
-    "fs": { "scope": "workspace", "extensions": [".pptx", ".odp"] },
-    "network": { "hosts": [] }
-  }
+    "fs": {
+      "scope": "workspace",
+      "extensions": [
+        ".pptx",
+        ".odp"
+      ]
+    },
+    "network": {
+      "hosts": []
+    }
+  },
+  "integrity": "sha256-7eb3b96c40c2ea235c2e181341d4b091ef5c8c03a2b16834268223773c9b3345",
+  "signature": "Xs4pZ2BiffpvB1ybI5mGV+6DAVOosyD6EhUtue9NGO6oxlDKtJK/XiqqO3IrXlzNPD2Qv7ONfVkhR+BSak7uDg=="
 }
