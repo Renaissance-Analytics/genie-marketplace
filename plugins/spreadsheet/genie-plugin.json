@@ -52,7 +52,7 @@
       "extensions": [".xlsx", ".csv", ".ods"],
       "fancyEditor": {
         "package": "@particle-academy/fancy-sheets",
-        "version": ">=0.1.0",
+        "version": "0.9.0",
         "export": "SheetWorkbook"
       }
     }

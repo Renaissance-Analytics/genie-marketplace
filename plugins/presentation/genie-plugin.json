@@ -48,7 +48,7 @@
       "extensions": [".pptx", ".odp"],
       "fancyEditor": {
         "package": "@particle-academy/fancy-slides",
-        "version": ">=0.1.0",
+        "version": "0.15.2",
         "export": "DeckEditor"
       },
       "toolbarActions": [
