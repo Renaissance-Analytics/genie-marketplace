@@ -1,0 +1,53 @@
+# Sign the marketplace's official plugins in CI.
+#
+# The signing key is the `GENIE_PLUGIN_SIGNING_KEY` ORG secret — the Ed25519
+# PRIVATE key for "Genie Official" (keyId
+# ed25519-bHc2Rt62EgjmpE5Fd7-QsJeNi36BsAwckJ4bEyx4BCE). It lives ONLY in GitHub;
+# contributors never handle it. This workflow feeds it to the reusable signer
+# action on genie `main`, which signs each plugin's genie-plugin.json (writing
+# publisher.keyId + integrity + a detached Ed25519 signature) and commits the
+# signed manifest back to `main`. Genie verifies that signature against its
+# bundled trust root at install time. See genie's docs/plugin-signing.md.
+name: Sign plugins
+
+on:
+  # Sign whenever a plugin's source changes on the publish branch…
+  push:
+    branches: [main]
+    paths:
+      - 'plugins/**'
+  # …and allow a manual re-sign (e.g. after rotating the key).
+  workflow_dispatch:
+
+permissions:
+  # The signer commits + pushes the signed manifests back to main.
+  contents: write
+
+jobs:
+  sign:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # The action signs ONE manifest per call, so we invoke it once per plugin
+      # dir. These run sequentially in a single job sharing one checkout, so each
+      # commit advances local HEAD and the next push is a clean fast-forward —
+      # unlike separate matrix jobs, which would each check out the trigger SHA
+      # and collide on push. Ed25519 signing is deterministic, so a re-triggered
+      # run re-signs to identical bytes → the action's "nothing to commit"
+      # no-op → no push → no loop.
+      - name: Sign presentation
+        uses: Renaissance-Analytics/genie/.github/actions/sign-genie-plugin@main
+        with:
+          signing-key: ${{ secrets.GENIE_PLUGIN_SIGNING_KEY }}
+          plugin-dir: plugins/presentation
+          # Guard: refuse to sign unless the secret derives to the official key.
+          expect-key-id: ed25519-bHc2Rt62EgjmpE5Fd7-QsJeNi36BsAwckJ4bEyx4BCE
+          # commit: 'true' (default) — commit + push the signed genie-plugin.json.
+
+      - name: Sign spreadsheet
+        uses: Renaissance-Analytics/genie/.github/actions/sign-genie-plugin@main
+        with:
+          signing-key: ${{ secrets.GENIE_PLUGIN_SIGNING_KEY }}
+          plugin-dir: plugins/spreadsheet
+          expect-key-id: ed25519-bHc2Rt62EgjmpE5Fd7-QsJeNi36BsAwckJ4bEyx4BCE
