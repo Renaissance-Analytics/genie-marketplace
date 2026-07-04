@@ -1,0 +1,34 @@
+{
+  "id": "ai.genie.document",
+  "namespace": "document",
+  "name": "Document",
+  "version": "0.1.0",
+  "description": "WYSIWYG editing for Markdown (.md) and Word (.docx) files with the react-fancy Editor. Markdown round-trips exactly; .docx opens and saves with basic fidelity (headings, lists, formatting, links, tables, embedded images) — Word-only features like tracked changes do not survive a save.",
+  "publisher": {
+    "name": "Genie Official",
+    "keyId": "ed25519-bHc2Rt62EgjmpE5Fd7-QsJeNi36BsAwckJ4bEyx4BCE"
+  },
+  "engines": {
+    "genie": ">=0.7.0"
+  },
+  "entry": {
+    "tools": "tools.cjs"
+  },
+  "mcpTools": [],
+  "editors": [
+    {
+      "id": "document",
+      "title": "Document",
+      "extensions": [".md", ".markdown", ".docx"],
+      "fancyEditor": {
+        "package": "@particle-academy/react-fancy",
+        "version": ">=4.9.0",
+        "export": "Editor"
+      }
+    }
+  ],
+  "capabilities": {
+    "fs": { "scope": "workspace", "extensions": [".md", ".markdown", ".docx"] },
+    "network": { "hosts": [] }
+  }
+}

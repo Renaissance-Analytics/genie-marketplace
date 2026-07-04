@@ -20,6 +20,13 @@
       "version": "0.1.0",
       "description": "Generate .xlsx/.csv workbooks from structured data with holy-sheet. Ships a fancy-sheets Sheets editor.",
       "path": "plugins/spreadsheet"
+    },
+    {
+      "id": "ai.genie.document",
+      "name": "Document",
+      "version": "0.1.0",
+      "description": "WYSIWYG editing for Markdown (.md) and Word (.docx) files with the react-fancy Editor.",
+      "path": "plugins/document"
     }
   ]
 }

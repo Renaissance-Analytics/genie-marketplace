@@ -51,3 +51,10 @@ jobs:
           signing-key: ${{ secrets.GENIE_PLUGIN_SIGNING_KEY }}
           plugin-dir: plugins/spreadsheet
           expect-key-id: ed25519-bHc2Rt62EgjmpE5Fd7-QsJeNi36BsAwckJ4bEyx4BCE
+
+      - name: Sign document
+        uses: Renaissance-Analytics/genie/.github/actions/sign-genie-plugin@main
+        with:
+          signing-key: ${{ secrets.GENIE_PLUGIN_SIGNING_KEY }}
+          plugin-dir: plugins/document
+          expect-key-id: ed25519-bHc2Rt62EgjmpE5Fd7-QsJeNi36BsAwckJ4bEyx4BCE
