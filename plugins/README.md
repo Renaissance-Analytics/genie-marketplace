@@ -8,7 +8,6 @@ the manifests here are **signing-ready** (no `signature` / `integrity` yet; CI a
 
 | Folder | Plugin | Tool(s) | Editor (declared Fancy mapping) |
 | --- | --- | --- | --- |
-| [`hello-world/`](hello-world/) | Hello World | `hello.greet` | — |
 | [`presentation/`](presentation/) | Presentation | `presentation.createDeck` (`.pptx` via `@particle-academy/dark-slide`) | Slides — `@particle-academy/fancy-slides` `>=0.1.0` → `DeckEditor` (`.pptx`, `.odp`) + Present mode |
 | [`spreadsheet/`](spreadsheet/) | Spreadsheet | `spreadsheet.createWorkbook` (`.xlsx`/`.csv` via `@particle-academy/holy-sheet`) | Sheets — `@particle-academy/fancy-sheets` `>=0.1.0` → `SheetWorkbook` (`.xlsx`, `.csv`, `.ods`) |
 
@@ -24,6 +23,7 @@ Editors are **declared, never shipped**: a plugin names a first-party Fancy
 package@version + export, and Genie loads that editor from a vetted,
 integrity-pinned Fancy source (design doc §12.2). Plugins never bundle editor UI.
 
-> These three also ship **bundled in the Genie app** (materialised from
-> `main/plugins/official.ts`). The copies here are their **installable
-> marketplace** form, modeled exactly on those bundled sources.
+> These also ship **bundled in the Genie app** (materialised from
+> `main/plugins/official.ts`, alongside the `hello-world` loader-seam example).
+> The copies here are their **installable marketplace** form, modeled exactly on
+> those bundled sources.

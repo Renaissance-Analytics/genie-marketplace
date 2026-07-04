@@ -8,13 +8,6 @@
   },
   "plugins": [
     {
-      "id": "ai.genie.hello-world",
-      "name": "Hello World",
-      "version": "0.1.0",
-      "description": "A trivial dev plugin that registers a single greeting tool — proves the Genie plugin loader seam end-to-end.",
-      "path": "plugins/hello-world"
-    },
-    {
       "id": "ai.genie.presentation",
       "name": "Presentation",
       "version": "0.1.0",
