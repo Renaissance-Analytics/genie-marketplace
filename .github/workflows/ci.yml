@@ -1,0 +1,48 @@
+name: CI
+
+# THIS REPOSITORY HAD NO TESTS.
+#
+# It had one workflow — "Sign plugins" — which signs what is here without ever
+# asking whether what is here is coherent. And it had failed twice recently with
+# nothing checking the thing it signs.
+#
+# The content IS a catalog that Genie reads to offer plugins, so every failure
+# mode is the same shape: the catalog says something the disk does not, and nobody
+# finds out until a user tries to install. A version that drifted, an entry
+# pointing at a directory that was renamed, a plugin added and never listed —
+# each is invisible here and an install failure there.
+#
+# The validator is a SCRIPT with its own tests rather than inline YAML, for the
+# reason that applies to every guard: logic inside a `run:` block can only be
+# tested by pushing, so it ships unverified. A validator is the worst case of
+# that — one that exits 0 unconditionally passes on the real catalog exactly as a
+# working one does, which is why its tests check every rule from both sides.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  catalog:
+    name: Catalog matches the plugins
+    runs-on: ubuntu-latest
+    steps:
+      # Action versions match repos/genie, the most actively maintained repo in
+      # this envelope, rather than introducing another set.
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+
+      # The validator's own tests run FIRST. A green catalog check means nothing
+      # if the checker is broken, and this is the ordering that says so.
+      - name: Test the validator
+        run: bash scripts/__tests__/validate-catalog.test.sh
+
+      - name: Validate the catalog
+        run: node scripts/validate-catalog.mjs
